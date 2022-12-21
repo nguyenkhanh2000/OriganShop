@@ -1,0 +1,270 @@
+﻿@model AppManager.Models.ProductViewModel
+@{
+    Layout = @"~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Cập nhật thông tin";
+    string error = TempData["error"] as string;
+}
+@if(!string.IsNullOrEmpty(error)){
+    <p class="text-danger">@error</p>
+}
+
+<div class="row">
+    <div class="col-md-8">
+        @if(Model.Id == 0)
+        {
+            <form action="~/admin/Product/AddOrUpdate" method="post">                
+                <input type="number" name="id" value="0" hidden />
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Tên sản phẩm</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" id="nameProduct" placeholder="Nhập tên sản phẩm ...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword16" class="col-sm-2 col-form-label"> ID Danh Mục </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="categoryId" id="categoryId" placeholder="Nhập id danh mục...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword14" class="col-sm-2 col-form-label">Giá</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="price" id="price" placeholder="Nhập giá sản phẩm...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Giá Cũ</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="oldPrice" id="oldPrice" placeholder="Nhập giá cũ...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword4" class="col-sm-2 col-form-label">Slug</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="slug" id="slug" placeholder="Nhập slug...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword5" class="col-sm-2 col-form-label"> Tóm Tắt </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="description" id="description" placeholder="Nhập tóm tắt sản phẩm...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword6" class="col-sm-2 col-form-label"> Nội Dung </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="summaryContent" id="summaryContent" placeholder="Nhập nội dung...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword7" class="col-sm-2 col-form-label"> Số Lượng </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Nhập số lượng...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword15" class="col-sm-2 col-form-label"> Nặng </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="weight" id="weight" placeholder="Nhập cân nặng...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword8" class="col-sm-2 col-form-label"> Đơn Vị </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="unit" id="unit" placeholder="Nhập đơn vị...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword9" class="col-sm-2 col-form-label"> Ngày tạo </label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" name="createdDate" id="createdDate" placeholder="Nhập ngày tạo...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword10" class="col-sm-2 col-form-label"> Ngày cập nhật </label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" name="updatedDate" id="updatedDate" placeholder="Nhập ngày cập nhật...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword11" class="col-sm-2 col-form-label"> Người Tạo </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="createdBy" id="createdBy" placeholder="Nhập người tạo...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword12" class="col-sm-2 col-form-label"> Người Cập Nhật </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="updatedBy" id="updatedBy" placeholder="Nhập người cập nhật...">
+                    </div>
+                </div>
+
+                <fieldset class="form-group">
+                    <div class="row">
+                        <legend class="col-form-label col-sm-2 pt-0"> Trạng Thái </legend>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                <label class="form-check-label" for="gridRadios1">
+                                    Còn hàng
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                <label class="form-check-label" for="gridRadios2">
+                                    Hết hàng
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group row">
+                    <label for="inputPassword13" class="col-sm-2 col-form-label"> Xóa </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="isDeleted" id="isDeleted" placeholder="Nhập xóa sản phẩm...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary"> Cập nhật </button>
+                    </div>
+                </div>
+            </form>
+        }else
+        {
+            <form action="~/admin/Product/AddOrUpdate" method="post">
+                <input type="number" name="id" value="@Model.Id" hidden />
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Tên sản phẩm</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" value="@Model.Name" id="nameProduct" placeholder="Nhập tên sản phẩm ...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword16" class="col-sm-2 col-form-label"> ID Danh Mục </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" value="@Model.CategoryId" name="categoryId" id="category" placeholder="Nhập id danh mục...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword14" class="col-sm-2 col-form-label">Giá</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="price" value="@Model.Price" id="price" placeholder="Nhập giá sản phẩm...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword30" class="col-sm-2 col-form-label">Giá Cũ</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="oldPrice" value="@Model.OldPrice" id="oldPrice" placeholder="Nhập giá cũ...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword4" class="col-sm-2 col-form-label">Slug</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="slug" value="@Model.Slug" id="slug" placeholder="Nhập slug...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword5" class="col-sm-2 col-form-label"> Tóm Tắt </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="description" value="@Model.Description" id="description" placeholder="Nhập tóm tắt sản phẩm...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword6" class="col-sm-2 col-form-label"> Nội Dung </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="summaryContent" value="@Model.SummaryContent" id="summaryContent" placeholder="Nhập nội dung...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword7" class="col-sm-2 col-form-label"> Số Lượng </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="quantity" value="@Model.Quantity" id="quantity" placeholder="Nhập số lượng...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword15" class="col-sm-2 col-form-label"> Nặng </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" value="@Model.Weight" name="weight" id="weight" placeholder="Nhập cân nặng...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword8" class="col-sm-2 col-form-label"> Đơn Vị </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="unit" value="@Model.Unit" id="unit" placeholder="Nhập đơn vị...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword9" class="col-sm-2 col-form-label"> Ngày tạo </label>
+                    <div class="col-sm-10">
+                        <input type="datetime" class="form-control" name="createdDate" value="@Model.CreatedDate" id="createdDate" placeholder="Nhập ngày tạo...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword10" class="col-sm-2 col-form-label"> Ngày cập nhật </label>
+                    <div class="col-sm-10">
+                        <input type="datetime" class="form-control" name="updatedDate" value="@Model.UpdatedDate" id="updatedDate" placeholder="Nhập ngày cập nhật...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword11" class="col-sm-2 col-form-label"> Người Tạo </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="createdBy" value="@Model.CreatedBy" id="createdBy" placeholder="Nhập người tạo...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword12" class="col-sm-2 col-form-label"> Người Cập Nhật </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="updatedBy" value="@Model.UpdatedBy" id="updatedBy" placeholder="Nhập người cập nhật...">
+                    </div>
+                </div>
+
+                <fieldset class="form-group">
+                    <div class="row">
+                        <legend class="col-form-label col-sm-2 pt-0"> Trạng Thái </legend>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                @if(Model.Status == 1){
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                }
+                                else{
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+
+                                }
+                                <label class="form-check-label" for="gridRadios1">
+                                    Còn hàng
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                @if(Model.Status == 0){
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+
+                                }else
+                                {
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                }
+                                <label class="form-check-label" for="gridRadios2">
+                                    Hết hàng
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group row">
+                    <label for="inputPassword13" class="col-sm-2 col-form-label"> Xóa </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="isDeleted" value="@Model.IsDeleted" id="isDeleted" placeholder="Nhập xóa sản phẩm...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary"> Cập nhật </button>
+                    </div>
+                </div>
+            </form>
+        }
+        
+    </div>
+
+</div>

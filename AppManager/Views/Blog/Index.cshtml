@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Trang Blog";
+}
+@model List<BlogModel>
+<div style="margin:0px;padding:0px" id="wapper">
+    <h1 style="padding: 20px 0px;text-align:center">Blog</h1>
+    <ul style="list-style:none"  class="list-post">
+        
+        @foreach(var item in Model){
+            <li style="display:flex">
+                <a href="" class="post-thumb" style="flex: 0 0 30%; padding-right: 15px">
+                    <img style="max-width:100%" src="@item.Image" alt="">
+                </a>
+                <div class="more-info">
+                    <a href="/Blog/DetailBlog?id=@item.Id" class="post-title" style="font-size: 1.1rem;font-weight:bold;color:#333;display:block;padding-bottom: 10px;transition: color 0.3s">
+                        @item.Name
+                    </a>
+                    <p class="post-excerpt">
+                        @item.Content
+                    </p>
+                </div>
+            </li>
+        }
+        
+    </ul>
+</div>

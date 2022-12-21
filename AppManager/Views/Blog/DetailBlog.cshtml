@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Trang Blog";
+}
+@model BlogModel
+<div id="wapper">
+    <h1 style="padding: 20px 0px;text-align:center">@Model.Name</h1>
+    <ul style="list-style:none" class="list-post">
+        <li style="display:flex">
+            <a href="" class="post-thumb" style="flex: 0 0 30%; padding-right: 15px">
+                <img style="max-width:100%" src="@Model.Image" alt="">
+            </a>
+            <div class="more-info">
+                <a href="" class="post-title" style="font-size: 1.1rem;font-weight:bold;color:#333;display:block;padding-bottom: 10px;transition: color 0.3s">
+                    @Model.Name
+                </a>
+                <p class="post-excerpt">
+                    @Model.Content
+                </p>
+            </div>
+        </li>
+        @*<li style="display:flex">
+        <a href="" class="post-thumb">
+        <img src="images/pic-2.jpg" alt="">
+        </a>
+        <div class="more-info">
+        <a href="" class="post-title">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum, in.
+        </a>
+        <p class="post-excerpt">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque est facilis fuga excepturi aut cupiditate repellendus dolor itaque nihil neque?
+        </p>
+        </div>
+        </li>*@
+    </ul>
+</div>

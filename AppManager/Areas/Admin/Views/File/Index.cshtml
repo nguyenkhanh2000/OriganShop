@@ -1,0 +1,45 @@
+﻿@{
+    Layout = @"~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+<h2> Quan ly File </h2>
+
+<div>
+    <p>Chon file</p>
+    <input type="file" name="fileUpload"/>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <img src="/img/defaultd.png" id="image-upload" style="width:100%"/>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).on('change','input[name="fileUpload]', function(){
+            let files = $(this).prop("files");
+            let formData = new FormData();
+            formData.append("file",files[0]);
+
+            $.ajax({
+                url:"/admin/file/uploadFile",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                beforeSend:() => {},
+                success: res => {
+                    console.log(res);
+                    if(res.status == "success"){
+
+                        $('#imageUpload').attr('src', res.fileInfo.filePath);
+                    }else{
+                        alert("Co loi xay ra");
+                    }                   
+                },
+                error:error => {
+                    console.log(error);
+                }
+            })
+        });
+    </script>
+}

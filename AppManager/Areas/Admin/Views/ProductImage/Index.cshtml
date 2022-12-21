@@ -1,0 +1,79 @@
+﻿@model List<AppManager.Models.ProductImageModel>
+@{
+
+    Layout = @"~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Danh sách ảnh sản phẩm";
+
+}
+<h2> Trang quan ly ảnh san pham </h2>
+<div>
+    <form id="formSearch" action="~/admin/ProductImage/index" method="get">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-inline mb-3">
+                    <input type="text" name="name" value="" placeholder="nhập ký tự..." class="form-control" />
+                    <button class="btn btn-primary ml-2"> Tìm kiếm </button>
+                </div>
+                <input type="number" id="txtPageNumber" name="pageNumber" value="1" />
+            </div>
+        </div>
+    </form>
+</div>
+<table class="table table-bordered table-striped" border="1">
+    <thead>
+        <tr>
+            <td>Stt</td>
+            <td>Id sản phẩm</td>
+            <td>Id File</td>
+            <td>Ảnh</td>
+            <td>Ngày tạo</td>
+            <td>Ngày cập nhật</td>
+            <td>Người tạo</td>
+            <td>Người cập nhật</td>
+            <td>Trạng thái</td>           
+            <td>Xóa</td>
+            <td> Tools</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.ProductId</td>
+                    <td>@item.FileId</td>
+                    <td>@item.ImageMore</td>                  
+                    <td>@item.CreatedDate</td>
+                    <td>@item.UpdatedDate</td>
+                    <td>@item.CreatedBy</td>
+                    <td>@item.UpdatedBy</td>
+                    <td>@item.Status</td>
+                    <td>@item.IsDeleted</td>
+                    <td>
+                        <a href="/*~/Admin/Product/AddOrUpdate?id=@item.Id*/" class="btn btn-primary"> Sửa </a>
+                        <a href="#" class="btn btn-danger"> Xóa </a>
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+@*<div class="pagination">
+    <ul class="d-flex" style="list-style: none">
+        @for (int i = 1; i <= pageCount; i++)
+        {
+            <li class="mr-2" onclick="clickPage(@i)">@i</li>
+        }
+    </ul>
+</div>*@
+@*@section Scripts{
+    <script>
+        function clickPage(pageNumber) {
+            document.getElementById('txtPageNumber').value = pageNumber;
+            document.getElementById('formSearch').submit();
+        }
+    </script>
+}
+*@
